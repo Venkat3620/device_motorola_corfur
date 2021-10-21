@@ -42,6 +42,9 @@ PRODUCT_COPY_FILES += \
 PRODUCT_USE_DYNAMIC_PARTITIONS := true
 PRODUCT_BUILD_SUPER_PARTITION := false
 
+# Properties
+include $(LOCAL_PATH)/configs/props/default.mk
+
 # Shipping level
 BOARD_API_LEVEL := 30
 BOARD_SHIPPING_API_LEVEL := 30
