@@ -296,10 +296,6 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     android.hardware.neuralnetworks@1.3.vendor
 
-# Net
-PRODUCT_PACKAGES += \
-    netutils-wrapper-1.0
-
 # NFC
 PRODUCT_PACKAGES += \
     android.hardware.nfc@1.2.vendor \
