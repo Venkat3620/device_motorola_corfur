@@ -261,4 +261,17 @@
     <!-- MMS user agent profile url -->
     <string name="config_mms_user_agent_profile_url" translatable="false">http://uaprof.motorola.com/phoneconfig/motov1/Profile/motov1.rdf</string>
 
+    <!-- List supported color modes. -->
+    <array name="config_availableColorModes">
+        <item>0</item> <!-- COLOR_MODE_NATURAL -->     <!-- This uses colorimetric render intents-->
+        <item>1</item> <!-- COLOR_MODE_BOOSTED -->     <!-- This applies a 10% boost using the PCC-->
+        <item>2</item> <!-- COLOR_MODE_SATURATED -->
+    </array>
+
+    <!-- The OEM specified sensor type for the gesture to launch the camera app. -->
+    <integer name="config_cameraLaunchGestureSensorType">65540</integer>
+
+    <!-- The OEM specified sensor string type for the gesture to launch camera app, this value
+         must match the value of config_cameraLaunchGestureSensorType in OEM's HAL -->
+    <string translatable="false" name="config_cameraLaunchGestureSensorStringType">com.motorola.sensor.camera_activate</string>
 </resources>
