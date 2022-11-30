@@ -250,7 +250,6 @@ PRODUCT_COPY_FILES += \
     frameworks/av/media/libstagefright/data/media_codecs_google_video_le.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_codecs_google_video_le.xml
 
 PRODUCT_PACKAGES += \
-    libavservices_minijail \
     libavservices_minijail.vendor \
     libcodec2_hidl@1.0.vendor
 
@@ -342,7 +341,8 @@ PRODUCT_PACKAGES += \
 
 # QTI Components
 TARGET_COMMON_QTI_COMPONENTS += \
-    audio
+    audio \
+    av
 
 # QTI service tracker
 PRODUCT_PACKAGES += \
