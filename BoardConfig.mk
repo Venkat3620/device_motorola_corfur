@@ -170,7 +170,6 @@ ENABLE_VENDOR_RIL_SERVICE := true
 VENDOR_SECURITY_PATCH := 2023-01-01
 
 # SELinux
-include device/qcom/sepolicy_vndr-legacy-um/SEPolicy.mk
 BUILD_BROKEN_VENDOR_PROPERTY_NAMESPACE := true
 
 # Verified Boot
