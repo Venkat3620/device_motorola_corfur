@@ -217,6 +217,11 @@ PRODUCT_PACKAGES += \
     android.hardware.health@2.1-service
 
 # HIDL
+DEVICE_FRAMEWORK_MANIFEST_FILE += $(DEVICE_PATH)/framework_manifest.xml
+DEVICE_FRAMEWORK_COMPATIBILITY_MATRIX_FILE := $(DEVICE_PATH)/device_framework_matrix.xml
+DEVICE_MATRIX_FILE := $(DEVICE_PATH)/compatibility_matrix.xml
+DEVICE_MANIFEST_FILE += $(DEVICE_PATH)/manifest_yupik.xml
+
 PRODUCT_PACKAGES += \
     libhidltransport.vendor \
     libhwbinder.vendor
