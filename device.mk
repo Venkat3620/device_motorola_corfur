@@ -4,10 +4,6 @@
 # SPDX-License-Identifier: Apache-2.0
 #
 
-# Boot animation
-TARGET_SCREEN_HEIGHT := 2400
-TARGET_SCREEN_WIDTH := 1080
-
 # Screen
 TARGET_SCREEN_DENSITY := 420
 
