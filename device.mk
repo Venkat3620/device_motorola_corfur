@@ -206,7 +206,6 @@ PRODUCT_COPY_FILES += \
     frameworks/av/media/libstagefright/data/media_codecs_google_video_le.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_codecs_google_video_le.xml
 
 PRODUCT_PACKAGES += \
-    libavservices_minijail.vendor \
     libcodec2_hidl@1.0.vendor
 
 # Moto hardware
@@ -237,10 +236,6 @@ PRODUCT_PACKAGES += \
     libcodec2_vndk.vendor \
     libOmxCore \
     libstagefrighthw
-
-# Perf
-PRODUCT_PACKAGES += \
-    vendor.qti.hardware.perf@2.2.vendor
 
 # Permissions
 PRODUCT_COPY_FILES += \
@@ -297,11 +292,8 @@ TARGET_COMMON_QTI_COMPONENTS += \
     av \
     bt \
     display \
-    gps
-
-# QTI service tracker
-PRODUCT_PACKAGES += \
-    vendor.qti.hardware.servicetracker@1.2.vendor
+    gps \
+    perf
 
 # RenderScript
 PRODUCT_PACKAGES += \
@@ -332,9 +324,7 @@ PRODUCT_COPY_FILES += \
 
 # Thermal
 PRODUCT_PACKAGES += \
-    android.hardware.thermal@2.0-service.qti \
-    android.hardware.thermal@2.0 \
-    android.hardware.thermal@2.0.vendor
+    android.hardware.thermal@2.0-service.qti
 
 # Trusted UI
 PRODUCT_PACKAGES += \
@@ -396,7 +386,6 @@ PRODUCT_VENDOR_MOVE_ENABLED := true
 
 # WiFi Display
 PRODUCT_PACKAGES += \
-    libavservices_minijail \
     libnl \
     libwfdaac_vendor
 

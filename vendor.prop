@@ -106,13 +106,6 @@ ro.mot.build.customerid=global
 ro.nfc.port=I2C
 ro.vendor.hw.nfc=st
 
-# Perf
-ro.vendor.extension_library=libqti-perfd-client.so
-ro.vendor.perf-hal.ver=2.2
-
-# QSPM
-ro.vendor.qspm.enable=true
-
 # Qtee
 persist.vendor.qteeconnector.retrying_interval=30
 persist.vendor.qteeconnector.retrying_timeout=2000
