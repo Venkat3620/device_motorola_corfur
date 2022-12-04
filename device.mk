@@ -279,6 +279,7 @@ TARGET_COMMON_QTI_COMPONENTS += \
     overlay \
     perf \
     usb \
+    vibrator \
     wlan
 
 # RenderScript
@@ -328,13 +329,6 @@ PRODUCT_PACKAGES_DEBUG += \
 
 # Verified Boot
 BOARD_AVB_ENABLE := true
-
-# Vibrator
-PRODUCT_PACKAGES += \
-    vendor.qti.hardware.vibrator.service
-
-PRODUCT_COPY_FILES += \
-    vendor/qcom/opensource/vibrator/excluded-input-devices.xml:$(TARGET_COPY_OUT_VENDOR)/etc/excluded-input-devices.xml
 
 # VNDK
 PRODUCT_ENFORCE_ARTIFACT_PATH_REQUIREMENTS := strict
