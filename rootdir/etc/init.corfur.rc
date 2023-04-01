@@ -1,0 +1,8 @@
+on post-fs
+    mount none /dev/null vendor/overlay/framework-res__auto_generated_rro_vendor.apk bind
+    mount none /dev/null vendor/overlay/MotoFrameworkResOverlayGAButton.apk bind
+    mount none /dev/null vendor/overlay/SetupWizardExt__auto_generated_rro_vendor.apk bind
+    mount none /dev/null vendor/overlay/SetupWizardExt-rro-gabuttonRightTop.apk bind
+    mount none /dev/null vendor/overlay/SystemUI__auto_generated_rro_vendor.apk bind
+    mount none /dev/null vendor/overlay/TelephonyResCommonQcom.apk bind
+    mount none /dev/null vendor/overlay/TelephonyResMotCommon.apk bind

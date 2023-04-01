@@ -32,6 +32,7 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/developer_gsi_keys.mk)
 
 # Init
 PRODUCT_PACKAGES += \
+    init.corfur.rc \
     init.recovery.qcom.rc \
     init.recovery.usb.rc
     
