@@ -42,6 +42,10 @@ BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := $(DEVICE_PATH)/bluetooth/include
 TARGET_BOOTLOADER_BOARD_NAME := corfur
 TARGET_NO_BOOTLOADER := true
 
+# Broken
+BUILD_BROKEN_DUP_RULES := true
+BUILD_BROKEN_ELF_PREBUILT_PRODUCT_COPY_FILES := true
+
 # Display
 TARGET_SCREEN_DENSITY := 420
 
@@ -82,8 +86,8 @@ TARGET_PREBUILT_DTB := $(DEVICE_PATH)-prebuilt/dtb.img
 PRODUCT_COPY_FILES += \
     $(DEVICE_PATH)-prebuilt/dtb.img:$(TARGET_COPY_OUT)/dtb.img \
     $(DEVICE_PATH)-prebuilt/kernel:kernel \
-    $(call find-copy-subdir-files,*,$(DEVICE_PATH)-prebuilt/modules/,$(TARGET_COPY_OUT_VENDOR_RAMDISK)/lib/modules) \
-
+    $(call find-copy-subdir-files,*,$(DEVICE_PATH)-prebuilt/modules/,$(TARGET_COPY_OUT_VENDOR_RAMDISK)/lib/modules)
+  
 # Metadata
 BOARD_USES_METADATA_PARTITION := true
 
