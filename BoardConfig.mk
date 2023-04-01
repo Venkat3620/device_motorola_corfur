@@ -113,6 +113,11 @@ BOARD_PREBUILT_VENDORIMAGE := $(DEVICE_PATH)-prebuilt/vendor.img
 BOARD_USES_QCOM_HARDWARE := true
 TARGET_BOARD_PLATFORM := holi
 
+# Properties
+TARGET_PRODUCT_PROP += $(DEVICE_PATH)/configs/props/product.prop
+TARGET_SYSTEM_PROP += $(DEVICE_PATH)/configs/props/system.prop
+TARGET_SYSTEM_EXT_PROP += $(DEVICE_PATH)/configs/props/system_ext.prop
+
 # Recovery
 BOARD_USES_RECOVERY_AS_BOOT := true
 BOARD_INCLUDE_DTB_IN_BOOTIMG := true
