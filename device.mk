@@ -53,6 +53,7 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     init.corfur.rc \
     init.recovery.qcom.rc \
+    init.recovery.qcom.sh \
     init.recovery.usb.rc
     
 PRODUCT_COPY_FILES += \
