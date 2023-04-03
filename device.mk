@@ -67,6 +67,19 @@ PRODUCT_PACKAGES += \
 DEVICE_PACKAGE_OVERLAYS += \
     $(LOCAL_PATH)/overlay-lineage
 
+PRODUCT_ENFORCE_RRO_TARGETS := *
+
+PRODUCT_PACKAGES += \
+    CarrierConfigOverlayTarget \
+    CellBroadcastReceiverResTarget \
+    FrameworksResCorfur \
+    LineageSystemUICorfur \
+    SettingsProviderResCorfur \
+    SystemUIResCorfur \
+    TelecommResOverlayCorfur \
+    TelephonyOverlayCorfur \
+    WifiResTarget
+
 # Partitions
 PRODUCT_USE_DYNAMIC_PARTITIONS := true
 PRODUCT_BUILD_SUPER_PARTITION := false

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--Copyright (c) 2018, Qualcomm Technologies, Inc.
+    All Rights Reserved.
+-->
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.android.server.telecom.overlay.common"
+    android:versionCode="1"
+    android:versionName="1.0">
+    <application android:hasCode="false" />
+    <overlay
+      android:targetPackage="com.android.server.telecom"
+      android:isStatic="true"
+      android:priority="1"/>
+</manifest>
