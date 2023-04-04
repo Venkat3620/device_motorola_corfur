@@ -142,7 +142,7 @@ TARGET_USERIMAGES_USE_EXT4 := true
 TARGET_USERIMAGES_USE_F2FS := true
 
 # Security patch level
-PLATFORM_SECURITY_PATCH := 2023-03-01
+#PLATFORM_SECURITY_PATCH := 2023-03-01
 
 # Sepolicy
 include device/qcom/sepolicy_vndr-legacy-um/SEPolicy.mk
