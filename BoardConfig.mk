@@ -55,10 +55,92 @@ TARGET_KERNEL_SOURCE := kernel/motorola/sm6375
 TARGET_KERNEL_CONFIG := vendor/holi-qgki_defconfig
 
 # Kernel Modules
-BOARD_VENDOR_KERNEL_MODULES_LOAD := $(strip $(shell cat $(DEVICE_PATH)/modules.load))
-BOARD_VENDOR_KERNEL_MODULES_BLOCKLIST_FILE := $(DEVICE_PATH)/modules.blocklist
-BOARD_VENDOR_RAMDISK_RECOVERY_KERNEL_MODULES_LOAD := $(strip $(shell cat $(DEVICE_PATH)/modules.load.recovery))
-BOOT_KERNEL_MODULES := $(BOARD_VENDOR_RAMDISK_RECOVERY_KERNEL_MODULES_LOAD)
+BOARD_DO_NOT_STRIP_VENDOR_MODULES := true
+BOARD_VENDOR_KERNEL_MODULES := \
+	$(KERNEL_MODULES_OUT)/apr_dlkm.ko \
+	$(KERNEL_MODULES_OUT)/pinctrl_lpi_dlkm.ko \
+	$(KERNEL_MODULES_OUT)/btpower.ko \
+	$(KERNEL_MODULES_OUT)/mbhc_dlkm.ko \
+	$(KERNEL_MODULES_OUT)/wcd937x_slave_dlkm.ko \
+	$(KERNEL_MODULES_OUT)/platform_dlkm.ko \
+	$(KERNEL_MODULES_OUT)/rdbg.ko \
+	$(KERNEL_MODULES_OUT)/q6_dlkm.ko \
+	$(KERNEL_MODULES_OUT)/wcd938x_slave_dlkm.ko \
+	$(KERNEL_MODULES_OUT)/va_macro_dlkm.ko \
+	$(KERNEL_MODULES_OUT)/wsa881x_analog_dlkm.ko \
+	$(KERNEL_MODULES_OUT)/adsp_loader_dlkm.ko \
+	$(KERNEL_MODULES_OUT)/snd_event_dlkm.ko \
+	$(KERNEL_MODULES_OUT)/bolero_cdc_dlkm.ko \
+	$(KERNEL_MODULES_OUT)/q6_notifier_dlkm.ko \
+	$(KERNEL_MODULES_OUT)/native_dlkm.ko \
+	$(KERNEL_MODULES_OUT)/rx_macro_dlkm.ko \
+	$(KERNEL_MODULES_OUT)/stub_dlkm.ko \
+	$(KERNEL_MODULES_OUT)/wcd938x_dlkm.ko \
+	$(KERNEL_MODULES_OUT)/machine_dlkm.ko \
+	$(KERNEL_MODULES_OUT)/q6_pdr_dlkm.ko \
+	$(KERNEL_MODULES_OUT)/tx_macro_dlkm.ko \
+	$(KERNEL_MODULES_OUT)/wcd9xxx_dlkm.ko \
+	$(KERNEL_MODULES_OUT)/swr_dlkm.ko \
+	$(KERNEL_MODULES_OUT)/aw882xx_k419.ko \
+	$(KERNEL_MODULES_OUT)/camera.ko \
+	$(KERNEL_MODULES_OUT)/aw882xx_acf.ko \
+	$(KERNEL_MODULES_OUT)/wcd937x_dlkm.ko \
+	$(KERNEL_MODULES_OUT)/wcd_core_dlkm.ko \
+	$(KERNEL_MODULES_OUT)/bt_fm_slim.ko \
+	$(KERNEL_MODULES_OUT)/swr_ctrl_dlkm.ko \
+	$(KERNEL_MODULES_OUT)/qca_cld3_wlan.ko \
+	$(KERNEL_MODULES_OUT)/rmnet_core.ko \
+	$(KERNEL_MODULES_OUT)/rmnet_ctl.ko \
+	$(KERNEL_MODULES_OUT)/rmnet_offload.ko \
+	$(KERNEL_MODULES_OUT)/rmnet_shs.ko \
+	$(KERNEL_MODULES_OUT)/utags.ko \
+	$(KERNEL_MODULES_OUT)/mmi_relay.ko \
+	$(KERNEL_MODULES_OUT)/mmi_info.ko \
+	$(KERNEL_MODULES_OUT)/mmi_annotate.ko \
+	$(KERNEL_MODULES_OUT)/sensors_class.ko \
+	$(KERNEL_MODULES_OUT)/moto_f_usbnet.ko \
+	$(KERNEL_MODULES_OUT)/watchdogtest.ko \
+	$(KERNEL_MODULES_OUT)/qpnp_adaptive_charge.ko \
+	$(KERNEL_MODULES_OUT)/fpc1020_mmi.ko \
+	$(KERNEL_MODULES_OUT)/wl2864c.ko \
+	$(KERNEL_MODULES_OUT)/wl2866d.ko \
+	$(KERNEL_MODULES_OUT)/cci_intf.ko \
+	$(KERNEL_MODULES_OUT)/sensors_class.ko \
+	$(KERNEL_MODULES_OUT)/mmi_relay.ko \
+	$(KERNEL_MODULES_OUT)/touchscreen_mmi.ko \
+	$(KERNEL_MODULES_OUT)/focaltech_v2_mmi.ko \
+	$(KERNEL_MODULES_OUT)/st21nfc.ko \
+	$(KERNEL_MODULES_OUT)/sx937x_sar.ko \
+	$(KERNEL_MODULES_OUT)/mmi_sys_temp.ko \
+	$(KERNEL_MODULES_OUT)/mmi-smbcharger-iio.ko \
+	$(KERNEL_MODULES_OUT)/mmi_sc8549.ko \
+	$(KERNEL_MODULES_OUT)/fm_ctrl.ko \
+	$(KERNEL_MODULES_OUT)/mmi_parallel_charger_iio.ko
+
+BOARD_VENDOR_RAMDISK_KERNEL_MODULES := \
+	$(KERNEL_MODULES_OUT)/utags.ko \
+	$(KERNEL_MODULES_OUT)/mmi_relay.ko \
+	$(KERNEL_MODULES_OUT)/mmi_info.ko \
+	$(KERNEL_MODULES_OUT)/mmi_annotate.ko \
+	$(KERNEL_MODULES_OUT)/sensors_class.ko \
+	$(KERNEL_MODULES_OUT)/moto_f_usbnet.ko \
+	$(KERNEL_MODULES_OUT)/watchdogtest.ko \
+	$(KERNEL_MODULES_OUT)/qpnp_adaptive_charge.ko \
+	$(KERNEL_MODULES_OUT)/fpc1020_mmi.ko \
+	$(KERNEL_MODULES_OUT)/wl2864c.ko \
+	$(KERNEL_MODULES_OUT)/wl2866d.ko \
+	$(KERNEL_MODULES_OUT)/cci_intf.ko \
+	$(KERNEL_MODULES_OUT)/sensors_class.ko \
+	$(KERNEL_MODULES_OUT)/mmi_relay.ko \
+	$(KERNEL_MODULES_OUT)/touchscreen_mmi.ko \
+	$(KERNEL_MODULES_OUT)/focaltech_v2_mmi.ko \
+	$(KERNEL_MODULES_OUT)/st21nfc.ko \
+	$(KERNEL_MODULES_OUT)/sx937x_sar.ko \
+	$(KERNEL_MODULES_OUT)/mmi_sys_temp.ko \
+	$(KERNEL_MODULES_OUT)/mmi-smbcharger-iio.ko \
+	$(KERNEL_MODULES_OUT)/mmi_sc8549.ko \
+	$(KERNEL_MODULES_OUT)/fm_ctrl.ko \
+	$(KERNEL_MODULES_OUT)/mmi_parallel_charger_iio.ko
 
 # A/B
 AB_OTA_UPDATER := true

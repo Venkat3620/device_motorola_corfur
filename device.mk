@@ -193,6 +193,10 @@ PRODUCT_PACKAGES += \
     libipanat \
     liboffloadhal
 
+# Kernel Modules
+KERNEL_MODULES_INSTALL := dlkm
+KERNEL_MODULES_OUT := $(OUT_DIR)/target/product/corfur/$(KERNEL_MODULES_INSTALL)/lib/modules
+
 # Keymaster
 PRODUCT_PACKAGES += \
     android.hardware.keymaster@4.1.vendor
