@@ -1,5 +1,5 @@
 # Directories of dependent local repositories
-DEVICE_PATH := device/motorola/dubai
+DEVICE_PATH := device/motorola/corfur
 HARDWARE_PATH := hardware/motorola
 QCOM_COMMON_PATH := device/qcom/common
 
@@ -32,7 +32,7 @@ AB_OTA_POSTINSTALL_CONFIG += \
 
 # AAPT
 PRODUCT_AAPT_CONFIG := normal
-PRODUCT_AAPT_PREF_CONFIG := 400dpi
+PRODUCT_AAPT_PREF_CONFIG := 420dpi
 PRODUCT_AAPT_PREBUILT_DPI := xxxhdpi xxhdpi xhdpi hdpi
 
 # API
@@ -54,8 +54,8 @@ PRODUCT_PACKAGES += \
     AntHalService-Soong
 
 # Architecture
-TARGET_BOARD_PLATFORM := lahaina
-TARGET_BOOTLOADER_BOARD_NAME := dubai
+TARGET_BOARD_PLATFORM := holi
+TARGET_BOOTLOADER_BOARD_NAME := corfur
 
 # Atrace
 PRODUCT_PACKAGES += \
@@ -137,14 +137,11 @@ PRODUCT_PACKAGES += \
 TARGET_FS_CONFIG_GEN += $(DEVICE_PATH)/configs/mot_aids.fs
 
 # Fingerprint
-TARGET_BUILDS_OSS_BIOMETRICS := true
-TARGET_USES_FOD_ZPOS := true
-
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.fingerprint.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.fingerprint.xml
 
 PRODUCT_PACKAGES += \
-    android.hardware.biometrics.fingerprint@2.3.so.vendor
+    android.hardware.biometrics.fingerprint@2.1.vendor
 
 # FM
 BOARD_HAVE_QCOM_FM := false
@@ -184,7 +181,7 @@ PRODUCT_PACKAGES += \
     charger_fstab.qti \
     charger_fw_fstab.qti \
     fstab.default \
-    init.dubai.perf.rc \
+    init.corfur.perf.rc \
     init.mmi.charge_only.rc \
     init.mmi.chipset.rc \
     init.mmi.overlay.rc \
@@ -192,11 +189,13 @@ PRODUCT_PACKAGES += \
     init.qti.qcv.rc \
     init.target.rc \
     init.vendor.st21nfc.rc \
-    ueventd.dubai.rc
+    ueventd.corfur.rc
 
 PRODUCT_PACKAGES += \
     init.mmi.boot.sh \
     init.mmi.touch.sh \
+    init.oem.fingerprint.overlay.sh \
+    init.oem.fingerprint2.sh \
     init.oem.hw.sh \
     init.qcom.sensors.sh \
     init.qti.chg_policy.sh \
@@ -218,9 +217,9 @@ PRODUCT_PACKAGES += \
    android.hardware.keymaster@4.1.vendor
 
 # Manifests
-DEVICE_MANIFEST_FILE := $(DEVICE_PATH)/configs/vintf/manifest_yupik.xml
+DEVICE_MANIFEST_FILE := $(DEVICE_PATH)/configs/vintf/manifest.xml
 DEVICE_FRAMEWORK_COMPATIBILITY_MATRIX_FILE += \
-    $(DEVICE_PATH)/configs/vintf/dubai_vendor_framework_compatibility_matrix.xml
+    $(DEVICE_PATH)/configs/vintf/corfur_vendor_framework_compatibility_matrix.xml
 
 # Moto Actions
 PRODUCT_PACKAGES += \
@@ -255,14 +254,14 @@ PRODUCT_PACKAGES += \
 
 # Overlays
 PRODUCT_PACKAGES += \
-    CarrierConfigResDubai \
-    FrameworksResDubai \
-    FrameworksResDubaiAOSPA \
-    SettingsResDubai \
-    SettingsProviderResDubai \
-    SystemUIResDubai \
-    TelephonyResDubai \
-    WifiResTargetDubai
+    CarrierConfigResCorfur \
+    FrameworksResCorfur \
+    FrameworksResCorfurAOSPA \
+    SettingsResCorfur \
+    SettingsProviderResCorfur \
+    SystemUIResCorfur \
+    TelephonyResCorfur \
+    WifiResTargetCorfur
 
 # Partitions - Dynamic
 PRODUCT_BUILD_ODM_IMAGE := true
@@ -319,11 +318,9 @@ PRODUCT_PACKAGES += \
     libxml2
 
 # Screen
-TARGET_SCREEN_DENSITY := 400
+TARGET_SCREEN_DENSITY := 420
 
 # Sensors
-TARGET_BUILDS_OSS_SENSORS_SUBHAL := true
-
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.sensor.accelerometer.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.sensor.accelerometer.xml \
     frameworks/native/data/etc/android.hardware.sensor.barometer.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.sensor.barometer.xml \
@@ -374,7 +371,6 @@ PRODUCT_PACKAGES += \
 # WLAN
 PRODUCT_COPY_FILES += \
     $(DEVICE_PATH)/configs/wifi/WCNSS_qcom_cfg.ini:$(TARGET_COPY_OUT_VENDOR)/etc/wifi/WCNSS_qcom_cfg.ini \
-    $(DEVICE_PATH)/configs/wifi/WCNSS_qcom_cfg.ini:$(TARGET_COPY_OUT_VENDOR)/etc/wifi/qca6750/WCNSS_qcom_cfg.ini \
     $(DEVICE_PATH)/configs/wifi/p2p_supplicant_overlay.conf:$(TARGET_COPY_OUT_VENDOR)/etc/wifi/p2p_supplicant_overlay.conf \
     $(DEVICE_PATH)/configs/wifi/wpa_supplicant_overlay.conf:$(TARGET_COPY_OUT_VENDOR)/etc/wifi/wpa_supplicant_overlay.conf
 
@@ -382,4 +378,4 @@ PRODUCT_COPY_FILES += \
 $(call inherit-product, $(HARDWARE_PATH)/common.mk)
 
 # Proprietary Vendor
-$(call inherit-product, vendor/motorola/dubai/dubai-vendor.mk)
+$(call inherit-product, vendor/motorola/corfur/corfur-vendor.mk)

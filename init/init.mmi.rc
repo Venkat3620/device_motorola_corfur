@@ -140,7 +140,7 @@ on post-fs
     setprop sys.sysctl.swappiness 100
 
 on post-fs-data
-    # Setup folders for security
+   # Setup folders for security
     mkdir /mnt/vendor/persist/security 02770 drmrpc drmrpc
     mkdir /data/vendor/dbvc 0750 vendor_tcmd shell
     chown drmrpc vendor_tcmd /mnt/vendor/persist/security
@@ -271,7 +271,7 @@ on boot
 
  # Change ownership and permission for leds backlight
    chmod 0664 /sys/class/leds/lcd-backlight/brightness
-
+   
    # Change ownership and permission for vibrator
    chown system system /sys/class/timed_output/vibrator/enable
    chmod 0660 /sys/class/timed_output/vibrator/enable
@@ -359,13 +359,20 @@ service vendor.oem-super-image-detector-sh /vendor/bin/init.oem.hw.sh -M
     oneshot
     disabled
 
+service vendor.ident-fps-sh /vendor/bin/init.oem.fingerprint.sh
+    class core
+    user root
+    group drmrpc system
+    oneshot
+    disabled
+
 service vendor.hal-fps-sh /vendor/bin/init.oem.fingerprint2.sh
     class late_start
     user root
     group system
     oneshot
 
-service fpc_ident /vendor/bin/fpc_ident
+service fpc_ident /vendor/bin/hw/fpc_ident
     class late_start
     user system
     group system

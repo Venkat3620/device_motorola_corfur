@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+     Copyright (C) 2023 Paranoid Android
+     SPDX-License-Identifier: Apache-2.0
+-->
+<resources>
+    <!-- Fingerprint from stock ROM -->
+    <string name="config_stockFingerprint" translatable="false">motorola/corfur_g/corfur:12/S2RUBS32M.51-15-9-5/76c7d7:user/release-keys</string>
+</resources>

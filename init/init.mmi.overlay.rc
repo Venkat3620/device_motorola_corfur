@@ -1,71 +1,64 @@
-import /vendor/etc/init/hw/init.vendor.st21nfc.rc
+on post-fs
+   # "Tap to wake" gesture
+   chown root input /sys/class/sensors/dt-gesture/enable
+   chmod 0660 /sys/class/sensors/dt-gesture/enable
+   chown root input /sys/class/sensors/dt-gesture/poll_delay
+   chmod 0660 /sys/class/sensors/dt-gesture/poll_delay
 
 on post-fs
-    # Sensors
-    chown system system /sys/devices/platform/soc/a94000.spi/spi_master/spi0/spi0.0/touchscreen/primary/double_tap_enabled
-    chown system system /sys/devices/platform/soc/a94000.spi/spi_master/spi0/spi0.0/touchscreen/primary/double_tap_pressed
-    chown system system /sys/devices/platform/soc/a94000.spi/spi_master/spi0/spi0.0/touchscreen/primary/udfps_enabled
-    chown system system /sys/devices/platform/soc/a94000.spi/spi_master/spi0/spi0.0/touchscreen/primary/udfps_pressed
+   chown system system /sys/devices/platform/soc/4804000.ufshc/clkgate_enable
+   chown system system /sys/devices/platform/soc/4804000.ufshc/devfreq/4804000.ufshc/min_freq
+
+import /vendor/etc/init/hw/init.vendor.st21nfc.rc
+
+#fps dual sensor
+service chipone_ident /vendor/bin/hw/chipone_ident
+    class late_start
+    user system
+    group system
+    oneshot
+    disabled
+
+service vendor.ident-fps-overlay-sh /vendor/bin/init.oem.fingerprint.overlay.sh
+    class core
+    user root
+    group drmrpc system
+    oneshot
+    disabled
 
 on post-fs-data
-    mkdir /mnt/vendor/persist/tof 0755 vendor_tcmd camera
-    chown vendor_tcmd camera /mnt/vendor/persist/tof/refspad_cal
-    chown vendor_tcmd camera /mnt/vendor/persist/tof/xtalk_g1_cal
-    chown vendor_tcmd camera /mnt/vendor/persist/tof/xtalk_shape_cal
-    chown vendor_tcmd camera /mnt/vendor/persist/tof/xtalk_production_cal
-    chown vendor_tcmd camera /mnt/vendor/persist/tof/offset_cal
-    chmod 0640 /mnt/vendor/persist/tof/refspad_cal
-    chmod 0640 /mnt/vendor/persist/tof/xtalk_g1_cal
-    chmod 0640 /mnt/vendor/persist/tof/xtalk_shape_cal
-    chmod 0640 /mnt/vendor/persist/tof/xtalk_production_cal
-    chmod 0640 /mnt/vendor/persist/tof/offset_cal
-    # Param updater data for various modules
-    mkdir /data/vendor/param 0775 system system
-    # Add for Egis Fod fingerprint
-    mkdir /data/vendor/egis 0770 system system
-    mkdir /mnt/vendor/persist/egis 0770 system system
-    mkdir /data/vendor/tzstorage/egis 0770 system system
-    mkdir /data/vendor/egis/cqa  0770 system system
+    exec_start vendor.ident-fps-overlay-sh
+    chown system system /dev/fpsensor
+    chmod 0660 /dev/fpsensor
+    chown system system /sys/devices/platform/soc/soc:fm_wcn39x0/elna_en
+    chmod 0660 /sys/devices/platform/soc/soc:fm_wcn39x0/elna_en
 
-    # Add for fod fps calibration
-    chown system system /sys/class/backlight/panel0-backlight/brightness
-    chown system system /sys/class/drm/card0-DSI-1/panelName
-    chown system system /sys/class/drm/card0-DSI-1/panelId
-    chown system system /d/dri/0/debug/motUtil
-    chmod 0666 /d/dri/0/debug/motUtil;
-    chmod 0666 /sys/class/backlight/panel0-backlight/brightness
-    chmod 0666 /sys/class/drm/card0-DSI-1/panelName
-    chmod 0666 /sys/class/drm/card0-DSI-1/panelId
-
-on early-boot
-    # Add for egis fingerprint
-    chown system system /dev/esfp0
-    chmod 0664 /dev/esfp0
+  # Change ownership and permission for cp-standalone factory testing
+  chown system system /sys/class/power_supply/cp-standalone/voltage_now
+  chown system system /sys/bus/iio/devices/iio:device5/in_index_sc8549_cp_enable_input
+  chmod 0644 /sys/class/power_supply/cp-standalone/voltage_now
+  chmod 0664 /sys/bus/iio/devices/iio:device5/in_index_sc8549_cp_enable_input
 
 on boot
-    # allow TCMD to access cci for OIS test
-    chmod 0660 /dev/cci_intf
-    chown system camera /dev/cci_intf
-
-    #change adsp pmic test command file access permission
-    chown vendor_tcmd system /sys/devices/platform/soc/soc:qcom,pmic_glink/soc:qcom,pmic_glink:mmi,qti-glink-charger/tcmd
-    chown vendor_tcmd system /sys/devices/platform/soc/soc:qcom,pmic_glink/soc:qcom,pmic_glink:mmi,qti-glink-charger/force_pmic_icl
-    chown vendor_tcmd system /sys/devices/platform/soc/soc:qcom,pmic_glink/soc:qcom,pmic_glink:qcom,battery_charger/force_charging_enable
-    chmod 0660 /sys/devices/platform/soc/soc:qcom,pmic_glink/soc:qcom,pmic_glink:mmi,qti-glink-charger/tcmd
-    chmod 0660 /sys/devices/platform/soc/soc:qcom,pmic_glink/soc:qcom,pmic_glink:mmi,qti-glink-charger/force_pmic_icl
-    chmod 0660 /sys/devices/platform/soc/soc:qcom,pmic_glink/soc:qcom,pmic_glink:qcom,battery_charger/force_charging_enable
-    # Touch game mode control
-    chown system system /sys/class/touchscreen/primary/rotate
-    chmod 0660 /sys/class/touchscreen/primary/rotate
-    chown system system /sys/class/touchscreen/primary/interpolation
-    chmod 0660 /sys/class/touchscreen/primary/interpolation
-    chown system system /sys/class/touchscreen/primary/edge
-    chmod 0660 /sys/class/touchscreen/primary/edge
-    chown system system /sys/class/touchscreen/primary/first_filter
-    chmod 0660 /sys/class/touchscreen/primary/first_filter
-   # Set adaptive charging perms for HAL
-    chown system system /sys/module/qpnp_adaptive_charge/parameters/upper_limit
-    chown system system /sys/module/qpnp_adaptive_charge/parameters/lower_limit
+   # change permission for capsensor
+   chown system system /sys/class/capsense/reset
+   chown system system /sys/class/capsense/int_state
+   # Change ownership for capsensor
+   chown root input /sys/class/sensors/Moto\ CapSense\ Ch0/enable
+   chown root input /sys/class/sensors/Moto\ CapSense\ Ch0/poll_delay
+   chown root input /sys/class/sensors/Moto\ CapSense\ Ch1/enable
+   chown root input /sys/class/sensors/Moto\ CapSense\ Ch1/poll_delay
+   chown root input /sys/class/sensors/Moto\ CapSense\ Ch2/enable
+   chown root input /sys/class/sensors/Moto\ CapSense\ Ch2/poll_delay
+   chown root input /sys/class/sensors/Moto\ CapSense\ Ch3/enable
+   chown root input /sys/class/sensors/Moto\ CapSense\ Ch3/poll_delay
+   chown root input /sys/class/sensors/Moto\ CapSense\ Ch4/enable
+   chown root input /sys/class/sensors/Moto\ CapSense\ Ch4/poll_delay
+   # vibrator hal need to access this sysfs node for AF noise issue
+   chown system system /sys/devices/platform/soc/soc:mot,cam-actuator/onekey_actuator
+   chmod 0660 /sys/devices/platform/soc/soc:mot,cam-actuator/onekey_actuator
+   # change permission for goodix TP
+   chmod 0666 /dev/gtp_tools
 
 service capsense_reset /system/vendor/bin/capsense_reset
    class core
@@ -76,5 +69,16 @@ service capsense_reset /system/vendor/bin/capsense_reset
 on property:sys.boot_completed=1
     start capsense_reset
 
-on property:persist.vendor.paramfile.parse_panel=1
-    write /sys/devices/platform/soc/soc:qcom,dsi-display-primary/dsi_display_parse_para "5"
+on boot && property:ro.vendor.mot.gki.path=5.4-gki
+    insmod /vendor/lib/modules/${ro.vendor.mot.gki.path}/nfc_i2c.ko
+
+on late-init
+    insmod /vendor/lib/modules/${ro.vendor.mot.gki.path}/mmi-smbcharger-iio.ko
+    insmod /vendor/lib/modules/${ro.vendor.mot.gki.path}/qpnp_adaptive_charge.ko
+    insmod /vendor/lib/modules/${ro.vendor.mot.gki.path}/mmi_parallel_charger_iio.ko
+    insmod /vendor/lib/modules/fm_ctrl.ko
+
+on charger
+    insmod /vendor/lib/modules/${ro.vendor.mot.gki.path}/mmi-smbcharger-iio.ko
+    insmod /vendor/lib/modules/${ro.vendor.mot.gki.path}/qpnp_adaptive_charge.ko
+    insmod /vendor/lib/modules/${ro.vendor.mot.gki.path}/mmi_parallel_charger_iio.ko

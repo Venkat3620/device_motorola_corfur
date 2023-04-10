@@ -17,8 +17,8 @@ prebuilt_etc {
 }
 
 prebuilt_etc {
-    name: "init.dubai.perf.rc",
-    src: "init.dubai.perf.rc",
+    name: "init.corfur.perf.rc",
+    src: "init.corfur.perf.rc",
     sub_dir: "init",
     vendor: true,
 }
@@ -70,6 +70,18 @@ sh_binary {
 }
 
 sh_binary {
+    name: "init.oem.fingerprint.overlay.sh",
+    src: "init.oem.fingerprint.overlay.sh",
+    vendor: true,
+}
+
+sh_binary {
+    name: "init.oem.fingerprint2.sh",
+    src: "init.oem.fingerprint2.sh",
+    vendor: true,
+}
+
+sh_binary {
     name: "init.qcom.sensors.sh",
     src: "init.qcom.sensors.sh",
     vendor: true,
@@ -109,8 +121,8 @@ prebuilt_etc {
 }
 
 prebuilt_etc {
-    name: "ueventd.dubai.rc",
+    name: "ueventd.corfur.rc",
     filename: "ueventd.rc",
-    src: "ueventd.dubai.rc",
+    src: "ueventd.corfur.rc",
     device_specific: true,
 }

@@ -1,0 +1,4 @@
+runtime_resource_overlay {
+    name: "FrameworksResCorfur",
+    device_specific: true,
+}

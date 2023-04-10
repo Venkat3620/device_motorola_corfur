@@ -1,6 +1,6 @@
 LOCAL_PATH := $(call my-dir)
 
-ifneq ($(filter dubai,$(TARGET_DEVICE)),)
+ifneq ($(filter corfur,$(TARGET_DEVICE)),)
 subdir_makefiles=$(call first-makefiles-under,$(LOCAL_PATH))
 $(foreach mk,$(subdir_makefiles),$(info including $(mk) ...)$(eval include $(mk)))
 
@@ -97,12 +97,13 @@ $(EXPAT_SYMLINKS): $(LOCAL_INSTALLED_MODULE)
 ALL_DEFAULT_INSTALLED_MODULES += $(EXPAT_SYMLINKS)
 
 # WLAN
-WLAN_CHIPSETS := wlan qca6750 qca6390
-$(foreach chip, $(WLAN_CHIPSETS), \
-	$(shell mkdir -p $(TARGET_OUT_VENDOR)/firmware/wlan/qca_cld/$(chip); \
-	ln -sf /vendor/etc/wifi/$(chip)/WCNSS_qcom_cfg.ini \
-	$(TARGET_OUT_VENDOR)/firmware/wlan/qca_cld/$(chip)/WCNSS_qcom_cfg.ini; \
-	ln -sf /mnt/vendor/persist/wlan/wlan_mac.bin \
-	$(TARGET_OUT_VENDOR)/firmware/wlan/qca_cld/$(chip)/wlan_mac.bin))
+WIFI_FIRMWARE_SYMLINKS := $(TARGET_OUT_VENDOR)/firmware/wlan/qca_cld
+$(WIFI_FIRMWARE_SYMLINKS): $(LOCAL_INSTALLED_MODULE)
+	@echo "Creating wifi firmware symlinks: $@"
+	@mkdir -p $@
+	$(hide) ln -sf /vendor/etc/wifi/WCNSS_qcom_cfg.ini $@/WCNSS_qcom_cfg.ini
+	$(hide) ln -sf /mnt/vendor/persist/wlan_mac.bin $@/wlan_mac.bin
+
+ALL_DEFAULT_INSTALLED_MODULES += $(WIFI_FIRMWARE_SYMLINKS)
 
 endif
