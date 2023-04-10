@@ -1,5 +1,5 @@
 #
-# Copyright (C) 2022 The LineageOS Project
+# Copyright (C) 2023 Paranoid Android
 #
 # SPDX-License-Identifier: Apache-2.0
 #
@@ -31,9 +31,6 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/updatable_apex.mk)
 $(call inherit-product, $(SRC_TARGET_DIR)/product/developer_gsi_keys.mk)
 
 # Overlays
-DEVICE_PACKAGE_OVERLAYS += \
-    $(LOCAL_PATH)/overlay-lineage
-
 PRODUCT_ENFORCE_RRO_TARGETS := *
 
 PRODUCT_PACKAGES += \
@@ -48,8 +45,8 @@ PRODUCT_PACKAGES += \
     WifiResTarget
 
 PRODUCT_PACKAGES += \
+    AOSPASystemUICorfur \
     FrameworksResCorfur \
-    LineageSystemUICorfur \
     SettingsProviderResCorfur \
     SystemUIResCorfur
 
@@ -142,9 +139,6 @@ PRODUCT_PACKAGES += \
     libcamera2ndk_vendor \
     libgui_vendor \
     vendor.qti.hardware.camera.postproc@1.0.vendor
-
-# Charger
-WITH_LINEAGE_CHARGER := false
 
 # Display
 PRODUCT_PACKAGES += \
@@ -254,10 +248,6 @@ PRODUCT_PACKAGES += \
 # Keymaster
 PRODUCT_PACKAGES += \
     android.hardware.keymaster@4.1.vendor
-
-# LiveDisplay
-#PRODUCT_PACKAGES += \
-#    vendor.lineage.livedisplay@2.1-service.corfur
 
 # Media
 PRODUCT_COPY_FILES += \
