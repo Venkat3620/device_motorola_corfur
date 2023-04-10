@@ -7,7 +7,6 @@ persist.vendor.audio.calfile4=/vendor/etc/acdbdata/Hdmi_cal.acdb
 persist.vendor.audio.calfile5=/vendor/etc/acdbdata/Headset_cal.acdb
 persist.vendor.audio.calfile6=/vendor/etc/acdbdata/Speaker_cal.acdb
 persist.vendor.audio.dualmic.config=endfire
-persist.vendor.audio.fluence.speaker=false
 persist.vendor.audio.speaker.stereo=false
 persist.vendor.audio.voicecall.speaker.stereo=true
 ro.audio.monitorRotation=true
@@ -19,12 +18,6 @@ vendor.audio_hal.period_size=192
 vendor.audio.screen_record=true
 vendor.audio.snd_card.open.retries=50
 vendor.audio.usb.disable.sidetone=true
-vendor.audio.use.sw.alac.decoder=false
-vendor.audio.use.sw.ape.decoder=false
-
-# Audio feature
-vendor.audio.feature.dynamic_ecns.enable=false
-vendor.audio.feature.spkr_prot.enable=false
 
 # Audio steps
 ro.config.vc_call_vol_steps=8
@@ -58,7 +51,6 @@ dalvik.vm.heapstartsize=16m
 dalvik.vm.heaptargetutilization=0.5
 
 # Display
-vendor.display.enable_async_powermode=1
 vendor.display.enable_early_wakeup=1
 vendor.display.enable_optimize_refresh=1
 vendor.display.hwc_disable_hdr=1
@@ -84,16 +76,11 @@ vendor.gatekeeper.disable_spu=true
 
 # Graphics
 debug.sf.disable_elapsetime_if_has_virtual=1
-debug.sf.high_fps_early_gl_phase_offset_ns=-4000000
-debug.sf.high_fps_late_sf_phase_offset_ns=-4000000
-persist.sys.sf.color_mode=0
 persist.sys.sf.force_brightness_capability=1
 persist.sys.sf.native_mode=1
 ro.hardware.egl=adreno
 ro.hardware.vulkan=adreno
 ro.opengles.version=196610
-ro.surface_flinger.has_HDR_display=false
-ro.surface_flinger.has_wide_color_display=false
 vendor.hw.sf.IdleLazyResetThresholdT=1000
 
 # IMS
@@ -190,8 +177,6 @@ debug.stagefright.c2inputsurface=-1
 
 # Surfaceflinger
 ro.sf.lcd_density=420
-ro.surface_flinger.has_HDR_display=false
-ro.surface_flinger.has_wide_color_display=false
 ro.surface_flinger.use_content_detection_for_refresh_rate=true
 ro.surface_flinger.set_touch_timer_ms=200
 
