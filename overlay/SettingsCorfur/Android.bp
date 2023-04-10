@@ -1,4 +1,4 @@
 runtime_resource_overlay {
     name: "SettingsResCorfur",
-    device_specific: true,
+    vendor: true,
 }

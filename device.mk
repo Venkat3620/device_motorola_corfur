@@ -179,7 +179,6 @@ PRODUCT_COPY_FILES += \
 # Init
 PRODUCT_PACKAGES += \
     charger_fstab.qti \
-    charger_fw_fstab.qti \
     fstab.default \
     init.corfur.perf.rc \
     init.mmi.charge_only.rc \
@@ -264,7 +263,6 @@ PRODUCT_PACKAGES += \
     WifiResTargetCorfur
 
 # Partitions - Dynamic
-PRODUCT_BUILD_ODM_IMAGE := true
 PRODUCT_USE_DYNAMIC_PARTITIONS := true
 
 PRODUCT_PACKAGES += \
