@@ -59,15 +59,6 @@
         </interface>
     </hal>
     <hal format="hidl" optional="true">
-        <name>android.hardware.wifi.supplicant</name>
-        <version>1.0-2</version>
-        <interface>
-            <name>ISupplicant</name>
-            <instance>default</instance>
-            <instance>wigigp2p</instance>
-        </interface>
-    </hal>
-    <hal format="hidl" optional="true">
         <name>com.dsi.ant</name>
         <version>1.0</version>
         <interface>
@@ -792,15 +783,6 @@
         <interface>
             <name>IHidlVppService</name>
             <instance>vppService</instance>
-        </interface>
-    </hal>
-    <hal format="hidl" optional="true">
-        <name>vendor.qti.hardware.wifi.hostapd</name>
-        <version>1.0-3</version>
-        <interface>
-            <name>IHostapdVendor</name>
-            <instance>default</instance>
-            <instance>wigighostapd</instance>
         </interface>
     </hal>
     <hal format="hidl" optional="true">
