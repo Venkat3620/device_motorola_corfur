@@ -87,7 +87,7 @@ BOARD_VENDOR_KERNEL_MODULES := \
 	$(KERNEL_MODULES_OUT)/wcd_core_dlkm.ko \
 	$(KERNEL_MODULES_OUT)/bt_fm_slim.ko \
 	$(KERNEL_MODULES_OUT)/swr_ctrl_dlkm.ko \
-	$(KERNEL_MODULES_OUT)/qca_cld3_wlan.ko \
+	$(KERNEL_MODULES_OUT)/wlan.ko \
 	$(KERNEL_MODULES_OUT)/rmnet_core.ko \
 	$(KERNEL_MODULES_OUT)/rmnet_ctl.ko \
 	$(KERNEL_MODULES_OUT)/rmnet_offload.ko \
