@@ -216,8 +216,8 @@ PRODUCT_PACKAGES += \
     libcodec2_hidl@1.0.vendor
 
 # Moto hardware
-PRODUCT_PACKAGES += \
-    MotoActions
+#PRODUCT_PACKAGES += \
+#    MotoActions
 
 # Neural Networks
 PRODUCT_PACKAGES += \
