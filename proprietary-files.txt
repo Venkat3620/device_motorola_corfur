@@ -68,6 +68,7 @@ vendor/etc/sound_trigger_platform_info.xml
 vendor/firmware/aw882xx_pid_2113_acf.bin
 
 # Audio libraries
+vendor/lib/hw/sound_trigger.primary.holi.so
 vendor/lib/libacdb-fts.so
 vendor/lib/libacdbloader.so
 vendor/lib/libacdbrtac.so
@@ -76,6 +77,7 @@ vendor/lib/libadm.so
 vendor/lib/libadsprpc.so
 vendor/lib/libaudcal.so
 vendor/lib/libqtigef.so
+vendor/lib64/hw/sound_trigger.primary.holi.so
 vendor/lib64/libacdb-fts.so
 vendor/lib64/libacdbloader.so
 vendor/lib64/libacdbrtac.so
