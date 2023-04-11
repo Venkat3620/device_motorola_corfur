@@ -1591,7 +1591,6 @@ vendor/lib64/libwvhidl.so
 
 # WiFi
 vendor/bin/cnss-daemon
-vendor/bin/lowirpcd
 vendor/firmware/wlanmdsp.otaupdate
 
 # WiFi Display
