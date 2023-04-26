@@ -28,9 +28,6 @@ PRODUCT_AAPT_PREBUILT_DPI := xxxhdpi xxhdpi xhdpi hdpi
 PRODUCT_SHIPPING_API_LEVEL := 30
 
 # Overlays
-DEVICE_PACKAGE_OVERLAYS += \
-    $(LOCAL_PATH)/overlay-lineage
-
 PRODUCT_ENFORCE_RRO_TARGETS := *
 
 PRODUCT_PACKAGES += \
@@ -139,9 +136,6 @@ PRODUCT_PACKAGES += \
     libcamera2ndk_vendor \
     libgui_vendor \
     vendor.qti.hardware.camera.postproc@1.0.vendor
-
-# Charger
-WITH_LINEAGE_CHARGER := false
 
 # Dalvik
 $(call inherit-product, frameworks/native/build/phone-xhdpi-6144-dalvik-heap.mk)
@@ -261,10 +255,6 @@ PRODUCT_COPY_FILES += \
 # Keymaster
 PRODUCT_PACKAGES += \
     android.hardware.keymaster@4.1.vendor
-
-# LiveDisplay
-#PRODUCT_PACKAGES += \
-#    vendor.lineage.livedisplay@2.1-service.motorola_holi
 
 # Media
 PRODUCT_COPY_FILES += \
