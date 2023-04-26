@@ -173,8 +173,8 @@ PRODUCT_PACKAGES += \
 
 # Fingerprint
 PRODUCT_PACKAGES += \
-    android.hardware.biometrics.fingerprint@2.1.vendor \
-    com.motorola.hardware.biometric.fingerprint@1.0.vendor
+    android.hardware.biometrics.fingerprint@2.1.vendor# \
+#    com.motorola.hardware.biometric.fingerprint@1.0.vendor
 
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/idc/uinput-fpc.idc:$(TARGET_COPY_OUT_VENDOR)/usr/idc/uinput-fpc.idc \
@@ -267,9 +267,9 @@ PRODUCT_PACKAGES += \
     libcodec2_hidl@1.0.vendor
 
 # Moto hardware
-PRODUCT_PACKAGES += \
-    MotoActions \
-    MotoCommonOverlay
+#PRODUCT_PACKAGES += \
+#    MotoActions \
+#    MotoCommonOverlay
 
 # Neural Networks
 PRODUCT_PACKAGES += \
