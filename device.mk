@@ -1,10 +1,7 @@
 # Directories of dependent local repositories
-DEVICE_PATH := device/motorola/dubai
+DEVICE_PATH := device/motorola/corfur
 HARDWARE_PATH := hardware/motorola
 QCOM_COMMON_PATH := device/qcom/common
-
-# Enable virtual A/B compression
-$(call inherit-product, $(SRC_TARGET_DIR)/product/virtual_ab_ota/compression.mk)
 
 # A/B related packages
 PRODUCT_PACKAGES += \
@@ -53,8 +50,8 @@ PRODUCT_PACKAGES += \
     AntHalService-Soong
 
 # Architecture
-TARGET_BOARD_PLATFORM := lahaina
-TARGET_BOOTLOADER_BOARD_NAME := dubai
+TARGET_BOARD_PLATFORM := holi
+TARGET_BOOTLOADER_BOARD_NAME := corfur
 
 # Atrace
 PRODUCT_PACKAGES += \
@@ -109,9 +106,6 @@ $(call inherit-product, vendor/qcom/opensource/dataservices/dataservices_vendor_
 
 # Display
 PRODUCT_COPY_FILES += \
-    $(DEVICE_PATH)/configs/display/display_id_4630947043778501762.xml:$(TARGET_COPY_OUT_VENDOR)/etc/displayconfig/display_id_4630947043778501762.xml
-
-PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.se.omapi.uicc.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.se.omapi.uicc.xml
 
 PRODUCT_PACKAGES += \
@@ -140,17 +134,12 @@ PRODUCT_PACKAGES += \
 TARGET_FS_CONFIG_GEN += $(DEVICE_PATH)/configs/mot_aids.fs
 
 # Fingerprint
-TARGET_BUILDS_OSS_BIOMETRICS := true
-TARGET_USES_FOD_ZPOS := true
-
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.fingerprint.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.fingerprint.xml
 
 PRODUCT_PACKAGES += \
-    android.hardware.biometrics.fingerprint@2.3.so.vendor
-
-# Firmware
-$(call inherit-product-if-exists, vendor/motorola/firmware/dubai/config.mk)
+    android.hardware.biometrics.fingerprint@2.1.vendor \
+    com.motorola.hardware.biometric.fingerprint@1.0.vendor
 
 # FM
 BOARD_HAVE_QCOM_FM := false
@@ -185,29 +174,6 @@ PRODUCT_COPY_FILES += \
     $(DEVICE_PATH)/configs/hotword/product_privapp-permissions-hotword.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/permissions/privapp-permissions-hotword.xml \
     $(DEVICE_PATH)/configs/hotword/hotword-hiddenapi-package-whitelist.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/sysconfig/hotword-hiddenapi-package-whitelist.xml
 
-# Init
-PRODUCT_PACKAGES += \
-    charger_fstab.qti \
-    charger_fw_fstab.qti \
-    fstab.default \
-    init.dubai.perf.rc \
-    init.mmi.charge_only.rc \
-    init.mmi.chipset.rc \
-    init.mmi.overlay.rc \
-    init.mmi.rc \
-    init.qti.qcv.rc \
-    init.target.rc \
-    init.vendor.st21nfc.rc \
-    ueventd.dubai.rc
-
-PRODUCT_PACKAGES += \
-    init.mmi.boot.sh \
-    init.mmi.touch.sh \
-    init.oem.hw.sh \
-    init.qcom.sensors.sh \
-    init.qti.chg_policy.sh \
-    init.qti.qcv.sh
-
 # IPACM
 PRODUCT_SOONG_NAMESPACES += vendor/qcom/opensource/data-ipa-cfg-mgr-legacy
 $(call inherit-product, vendor/qcom/opensource/data-ipa-cfg-mgr-legacy/ipacm_vendor_product.mk)
@@ -224,9 +190,9 @@ PRODUCT_PACKAGES += \
    android.hardware.keymaster@4.1.vendor
 
 # Manifests
-DEVICE_MANIFEST_FILE := $(DEVICE_PATH)/configs/vintf/manifest_yupik.xml
+DEVICE_MANIFEST_FILE := $(DEVICE_PATH)/configs/vintf/manifest.xml
 DEVICE_FRAMEWORK_COMPATIBILITY_MATRIX_FILE += \
-    $(DEVICE_PATH)/configs/vintf/dubai_vendor_framework_compatibility_matrix.xml
+    $(DEVICE_PATH)/configs/vintf/corfur_vendor_framework_compatibility_matrix.xml
 
 # Moto Actions
 PRODUCT_PACKAGES += \
@@ -257,24 +223,21 @@ PRODUCT_PACKAGES += \
 
 # Overlays
 PRODUCT_PACKAGES += \
-    CarrierConfigResDubai \
-    FrameworksResDubai \
-    FrameworksResDubaiAOSPA \
-    SettingsResDubai \
-    SettingsProviderResDubai \
-    SystemUIResDubai \
-    TelephonyResDubai \
-    WifiResTargetDubai
+    CarrierConfigResCorfur \
+    FrameworksResCorfur \
+    FrameworksResCorfurAOSPA \
+    SettingsResCorfur \
+    SettingsProviderResCorfur \
+    SystemUIResCorfur \
+    TelephonyResCorfur \
+    WifiResTargetCorfur
 
 # Partitions - Dynamic
-PRODUCT_BUILD_ODM_IMAGE := true
 PRODUCT_USE_DYNAMIC_PARTITIONS := true
 
 PRODUCT_PACKAGES += \
     android.hardware.fastboot@1.0-impl-mock \
     fastbootd
-
-PRODUCT_COPY_FILES += $(DEVICE_PATH)/init/fstab.default:$(TARGET_COPY_OUT_VENDOR_RAMDISK)/first_stage_ramdisk/fstab.default
 
 # Partitions - Super
 PRODUCT_BUILD_SUPER_PARTITION := false
@@ -295,7 +258,6 @@ TARGET_COMMON_QTI_COMPONENTS += \
     bt \
     display \
     gps \
-    init \
     media \
     overlay \
     perf \
@@ -304,6 +266,22 @@ TARGET_COMMON_QTI_COMPONENTS += \
     vibrator \
     wfd \
     wlan
+
+# Rootdir
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/rootdir/etc/fstab.qcom:$(TARGET_COPY_OUT_VENDOR_RAMDISK)/first_stage_ramdisk/fstab.qcom
+
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/rootdir/etc/fstab.qcom:$(TARGET_COPY_OUT_VENDOR)/etc/fstab.qcom \
+    $(LOCAL_PATH)/rootdir/etc/ueventd.rc:$(TARGET_COPY_OUT_VENDOR)/ueventd.rc
+
+$(foreach f,$(wildcard $(LOCAL_PATH)/rootdir/etc/init/hw/*.rc),\
+        $(eval PRODUCT_COPY_FILES += $(f):$(TARGET_COPY_OUT_VENDOR)/etc/init/hw/$(notdir $f)))
+$(foreach f,$(wildcard $(LOCAL_PATH)/rootdir/etc/init/*.rc),\
+        $(eval PRODUCT_COPY_FILES += $(f):$(TARGET_COPY_OUT_VENDOR)/etc/init/$(notdir $f)))
+$(foreach f,$(wildcard $(LOCAL_PATH)/rootdir/bin/*.sh),\
+        $(eval PRODUCT_COPY_FILES += $(f):$(TARGET_COPY_OUT_VENDOR)/bin/$(notdir $f)))
+
 
 # RIL
 ENABLE_VENDOR_RIL_SERVICE := true
@@ -325,8 +303,6 @@ PRODUCT_PACKAGES += \
 TARGET_SCREEN_DENSITY := 400
 
 # Sensors
-TARGET_BUILDS_OSS_SENSORS_SUBHAL := true
-
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.sensor.accelerometer.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.sensor.accelerometer.xml \
     frameworks/native/data/etc/android.hardware.sensor.barometer.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.sensor.barometer.xml \
@@ -374,7 +350,6 @@ PRODUCT_PACKAGES += \
 # WLAN
 PRODUCT_COPY_FILES += \
     $(DEVICE_PATH)/configs/wifi/WCNSS_qcom_cfg.ini:$(TARGET_COPY_OUT_VENDOR)/etc/wifi/WCNSS_qcom_cfg.ini \
-    $(DEVICE_PATH)/configs/wifi/WCNSS_qcom_cfg.ini:$(TARGET_COPY_OUT_VENDOR)/etc/wifi/qca6750/WCNSS_qcom_cfg.ini \
     $(DEVICE_PATH)/configs/wifi/p2p_supplicant_overlay.conf:$(TARGET_COPY_OUT_VENDOR)/etc/wifi/p2p_supplicant_overlay.conf \
     $(DEVICE_PATH)/configs/wifi/wpa_supplicant_overlay.conf:$(TARGET_COPY_OUT_VENDOR)/etc/wifi/wpa_supplicant_overlay.conf
 
@@ -382,4 +357,4 @@ PRODUCT_COPY_FILES += \
 $(call inherit-product, $(HARDWARE_PATH)/common.mk)
 
 # Proprietary Vendor
-$(call inherit-product, vendor/motorola/dubai/dubai-vendor.mk)
+$(call inherit-product, vendor/motorola/corfur/corfur-vendor.mk)

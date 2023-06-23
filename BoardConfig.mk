@@ -41,9 +41,6 @@ BUILD_BROKEN_VENDOR_PROPERTY_NAMESPACE := true
 BOARD_KERNEL_SEPARATED_DTBO := true
 BOARD_INCLUDE_RECOVERY_DTBO := true
 
-# Fingerprint
-TARGET_SURFACEFLINGER_UDFPS_LIB := //$(HARDWARE_PATH):libudfps_extension.motorola
-
 # GPS
 LOC_HIDL_VERSION = 4.0
 
@@ -52,39 +49,34 @@ BOARD_KERNEL_BASE := 0x00000000
 BOARD_KERNEL_CMDLINE := \
     androidboot.console=ttyMSM0 \
     androidboot.hab.cid=50 \
-    androidboot.hab.csv=13 \
-    androidboot.hab.product=dubai \
+    androidboot.hab.csv=11 \
+    androidboot.hab.product=corfur \
     androidboot.hardware=qcom \
     androidboot.memcg=1 \
-    androidboot.usbcontroller=a600000.dwc3 \
+    androidboot.usbcontroller=4e00000.dwc3 \
     cgroup.memory=nokmem,nosocket \
     console=ttyMSM0,115200n8 \
+    earlycon=msm_geni_serial,0x04C8C000 \
     firmware_class.path=/vendor/firmware_mnt/image \
-    iptable_raw.raw_before_defrag=1 \
-    ip6table_raw.raw_before_defrag=1 \
-    loop.max_part=7 \
-    lpm_levels.sleep_disabled=1 \
-    msm_rtb.filter=0x237 \
-    pcie_ports=compat \
-    service_locator.enable=1 \
-    swiotlb=0
+    iptable_raw.raw_before_defrag=1 ip6table_raw.raw_before_defrag=1 \
+    lpm_levels.sleep_disabled=1 loop.max_part=7 \
+    msm_rtb.filter=0x237 service_locator.enable=1 swiotlb=0 
+BOARD_KERNEL_CMDLINE += androidboot.selinux=permissive
 BOARD_KERNEL_PAGESIZE := 4096
-BOARD_RAMDISK_USE_LZ4 := true
-KERNEL_CUSTOM_LLVM := true
-KERNEL_DEFCONFIG := dubai-qgki_defconfig
+#BOARD_RAMDISK_USE_LZ4 := true
+#KERNEL_CUSTOM_LLVM := true
+KERNEL_DEFCONFIG := corfur-qgki_defconfig
 
 # OTA Assert
-TARGET_OTA_ASSERT_DEVICE := dubai
+TARGET_OTA_ASSERT_DEVICE := corfur
 
 # Partitions
-BOARD_BUILD_SYSTEM_ROOT_IMAGE := false
 BOARD_BUILD_VENDOR_RAMDISK_IMAGE := true
 
 # Partitions - A/B
 AB_OTA_PARTITIONS += \
     boot \
     dtbo \
-    odm \
     product \
     system \
     system_ext \
@@ -97,10 +89,9 @@ AB_OTA_UPDATER := true
 
 # Partitions - Dynamic
 BOARD_SUPER_PARTITION_GROUPS := qti_dynamic_partitions
-BOARD_QTI_DYNAMIC_PARTITIONS_PARTITION_LIST := odm product system system_ext vendor
+BOARD_QTI_DYNAMIC_PARTITIONS_PARTITION_LIST := product system system_ext vendor
 
 # Partitions - Filesystems
-BOARD_ODMIMAGE_FILE_SYSTEM_TYPE := ext4
 BOARD_PRODUCTIMAGE_FILE_SYSTEM_TYPE := ext4
 BOARD_SYSTEM_EXTIMAGE_FILE_SYSTEM_TYPE := ext4
 BOARD_SYSTEMIMAGE_FILE_SYSTEM_TYPE := ext4
@@ -111,7 +102,6 @@ BOARD_USERDATAIMAGE_FILE_SYSTEM_TYPE := f2fs
 BOARD_USES_METADATA_PARTITION := true
 
 # Partitions - Paths
-TARGET_COPY_OUT_ODM := odm
 TARGET_COPY_OUT_PRODUCT := product
 TARGET_COPY_OUT_SYSTEM_EXT := system_ext
 TARGET_COPY_OUT_VENDOR := vendor
@@ -128,18 +118,19 @@ BOARD_VENDOR_BOOTIMAGE_PARTITION_SIZE := 100663296
 ADD_RADIO_FILES := false
 
 # Recovery
-BOARD_MOVE_RECOVERY_RESOURCES_TO_VENDOR_BOOT := true
+BOARD_USES_RECOVERY_AS_BOOT := true
 TARGET_NO_RECOVERY := true
 TARGET_RECOVERY_UI_MARGIN_HEIGHT := 90
-TARGET_RECOVERY_FSTAB := $(DEVICE_PATH)/init/fstab.default
+TARGET_RECOVERY_DEVICE_DIRS += $(DEVICE_PATH)
+TARGET_RECOVERY_FSTAB := $(DEVICE_PATH)/rootdir/etc/fstab.qcom
 TARGET_RECOVERY_WIPE := $(DEVICE_PATH)/recovery/recovery.wipe
 
 # SELinux
-BOARD_VENDOR_SEPOLICY_DIRS += \
-    $(DEVICE_PATH)/sepolicy/vendor
+#BOARD_VENDOR_SEPOLICY_DIRS += \
+#    $(DEVICE_PATH)/sepolicy/vendor
 
-PRODUCT_PRIVATE_SEPOLICY_DIRS += \
-    $(DEVICE_PATH)/sepolicy/private
+#PRODUCT_PRIVATE_SEPOLICY_DIRS += \
+#    $(DEVICE_PATH)/sepolicy/private
 
 # UFS
 #namespace definition for librecovery_updater

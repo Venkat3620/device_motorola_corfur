@@ -30,7 +30,7 @@ persist.vendor.dpm.feature=11
 debug.hwui.skia_atrace_enabled=false
 
 # Google
-ro.opa.device_model_id=motorola-dubai
+ro.opa.device_model_id=motorola-corfur
 ro.opa.eligible_device=true
 
 # IMS
