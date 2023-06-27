@@ -1,0 +1,4 @@
+runtime_resource_overlay {
+    name: "FrameworksResCorfurAOSPA",
+    system_ext_specific: true,
+}
