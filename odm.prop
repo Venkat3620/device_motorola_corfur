@@ -1,15 +1,13 @@
 # Audio
-persist.vendor.audio.bcl.enabled=false
 persist.vendor.audio.fluence.speaker=false
-persist.vendor.audio.vbat.enabled=false
-persist.vendor.audio.voicecall.speaker.stereo=false
+persist.vendor.audio.voicecall.speaker.stereo=true
 ro.vendor.qti.va_odm.support=1
 vendor.audio.use.sw.alac.decoder=false
 vendor.audio.use.sw.ape.decoder=false
-vendor.audio.feature.concurrent_capture.enable=false
+vendor.audio.feature.concurrent_capture.enable=true
 vendor.audio.feature.dynamic_ecns.enable=false
 vendor.audio.feature.spkr_prot.enable=false
-vendor.audio.feature.vbat.enable=false
+vendor.audio.feature.vbat.enable=true
 
 # Display
 debug.sf.high_fps_early_gl_phase_offset_ns=-4000000
