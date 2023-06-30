@@ -8,9 +8,6 @@ media.aac_51_output_enabled=true
 # Charger
 ro.charger.enable_suspend=1
 
-# Display
-debug.sf.enable_hwc_vds=1
-
 # CNE
 persist.vendor.cne.feature=1
 
@@ -22,6 +19,9 @@ persist.data.df.dl_mode=5
 persist.data.df.iwlan_mux=9
 persist.data.df.mux_count=8
 persist.data.df.ul_mode=5
+
+# Display
+debug.sf.enable_hwc_vds=1
 
 # DPM
 persist.vendor.dpm.feature=11

@@ -5,11 +5,11 @@ audio.offload.min.duration.secs=60
 audio.offload.video=false
 media.aac_51_output_enabled=true
 
-# CNE
-persist.vendor.cne.feature=1
-
 # Charger
 ro.charger.enable_suspend=1
+
+# CNE
+persist.vendor.cne.feature=1
 
 # Crypto
 ro.crypto.dm_default_key.options_format.version=2
