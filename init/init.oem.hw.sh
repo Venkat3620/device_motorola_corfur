@@ -359,6 +359,10 @@ set_ro_hw_properties_upgrade()
 		utag_value=$(cat $utag_path/ascii)
 		setprop $prop_prefix$utag_name "$utag_value"
 		notice "ro.vendor.hw.$utag_name='$utag_value'"
+
+		if [ "$utag_name" = "dualsim" ] && [ "$utag_value" = "true" ]; then
+			setprop persist.vendor.radio.multisim.config dsds
+		fi
 	done
 }
 
@@ -384,6 +388,10 @@ set_ro_hw_properties()
 		utag_value=$(cat $utag_path/ascii)
 		setprop $prop_prefix$utag_name "$utag_value"
 		notice "$prop_prefix$utag_name='$utag_value'"
+		
+		if [ "$utag_name" = "dualsim" ] && [ "$utag_value" = "true" ]; then
+			setprop persist.vendor.radio.multisim.config dsds
+		fi
 	done
 }
 
@@ -604,31 +612,6 @@ if [ ! -z "$dead_touch" ]; then
 	notice "property [$touch_status_prop] set to [dead]"
 	set_reboot_counter 1
 	return 0
-fi
-
-if [ -f /vendor/lib/modules/utags.ko ]; then
-	notice "loading utag driver"
-	insmod /vendor/lib/modules/utags.ko
-	if [ $? -ne 0 ]; then
-		gki_modules_full_path=`find /vendor/lib/modules -name "*-gki"`
-		if [ -n "$gki_modules_full_path" ]; then
-			gki_modules_path=`basename $gki_modules_full_path`
-			notice "loading gki utag driver in /vendor/lib/modules/$gki_modules_path"
-			insmod /vendor/lib/modules/$gki_modules_path/utags.ko
-			if [ $? -ne 0 ]; then
-				notice "fail to load /vendor/lib/modules/$gki_modules_path/utags.ko"
-				setprop ro.vendor.mot.gki.path "."
-			else
-				notice "successfully load /vendor/lib/modules/$gki_modules_path/utags.ko"
-				setprop ro.vendor.mot.gki.path $gki_modules_path
-			fi
-		else
-			notice "fail to load utag driver"
-			setprop ro.vendor.mot.gki.path "."
-		fi
-	else
-		setprop ro.vendor.mot.gki.path "."
-	fi
 fi
 
 notice "checking integrity"
