@@ -91,7 +91,8 @@ TARGET_PREBUILT_DTB := $(DEVICE_PATH)-prebuilt/dtb.img
 PRODUCT_COPY_FILES += \
     $(DEVICE_PATH)-prebuilt/dtb.img:$(TARGET_COPY_OUT)/dtb.img \
     $(DEVICE_PATH)-prebuilt/kernel:kernel \
-    $(call find-copy-subdir-files,*,$(DEVICE_PATH)-prebuilt/modules/,$(TARGET_COPY_OUT_VENDOR_RAMDISK)/lib/modules)
+    $(call find-copy-subdir-files,*,$(DEVICE_PATH)-prebuilt/vendor-modules/,$(TARGET_COPY_OUT_VENDOR)/lib/modules) \
+    $(call find-copy-subdir-files,*,$(DEVICE_PATH)-prebuilt/ramdisk-modules/,$(TARGET_COPY_OUT_VENDOR_RAMDISK)/lib/modules)
   
 # Metadata
 BOARD_USES_METADATA_PARTITION := true
@@ -118,8 +119,6 @@ BOARD_USERDATAIMAGE_FILE_SYSTEM_TYPE := f2fs
 TARGET_COPY_OUT_PRODUCT := product
 TARGET_COPY_OUT_SYSTEM_EXT := system_ext
 TARGET_COPY_OUT_VENDOR := vendor
-
-BOARD_PREBUILT_VENDORIMAGE := $(DEVICE_PATH)-prebuilt/vendor.img
 
 # Platform
 BOARD_USES_QCOM_HARDWARE := true
