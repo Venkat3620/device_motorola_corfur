@@ -1,6 +1,12 @@
 # Charge only mode configuration
 import /vendor/etc/init/hw/init.mmi.charge_only.rc
 
+on property:ro.build.type=userdebug && property:ro.vendor.mot.gki.path=*
+    insmod /vendor/lib/modules/${ro.vendor.mot.gki.path}/watchdogtest.ko
+
+on early-init && property:ro.bootmode=mot-factory
+    insmod /vendor/lib/modules/moto_f_usbnet.ko
+
 on early-boot
     # Permission for Health Storage HAL
     chown system system /sys/devices/platform/soc/4804000.ufshc/manual_gc

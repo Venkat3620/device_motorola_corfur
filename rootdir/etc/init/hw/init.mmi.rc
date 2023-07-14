@@ -11,12 +11,6 @@ on init
     chown system log /proc/driver/mmi_annotate
     chmod 0640 /proc/driver/mmi_annotate
 
-on early-init && property:ro.bootmode=mot-factory
-    setprop ro.vendor.mot.factory true
-
-on early-init && property:ro.vendor.build.motfactory=1
-    setprop ro.vendor.mot.factory true
-
 on early-init
     # Need to wait for platform path for UTAGs driver to succeed
     wait /dev/block/platform/soc/${ro.boot.bootdevice}/by-name/hw
@@ -58,6 +52,7 @@ on early-init
     write /sys/module/msm_show_resume_irq/parameters/debug_mask 1
 
 on fs
+    insmod /vendor/lib/modules/cci_intf.ko
     mkdir /mnt/vendor/persist/fps 0770 system system
     exec_start vendor.ident-fps-sh
 
@@ -146,7 +141,6 @@ on post-fs
     setprop sys.sysctl.swappiness 100
 
 on post-fs-data
-
     # Setup folders for security
     mkdir /mnt/vendor/persist/security 02770 drmrpc drmrpc
     mkdir /data/vendor/dbvc 0750 vendor_tcmd shell
@@ -235,9 +229,6 @@ on post-fs-data
     # Create directory used by chargeonlymode
     mkdir /data/vendor/chargeonly 0750 root log
 
-    # Create directory used by chargeonlymode
-    mkdir /data/vendor/chargeonly 0750 root log
-
     # Subsystem RAM-dumps
     mkdir /data/vendor/ss-ram-dumps 0750 system log
     mkdir /data/vendor/ss-ram-dumps/bp-dumps 0750 system log
@@ -311,6 +302,12 @@ on boot
    # Quiet binder logs
    write /sys/module/binder/parameters/debug_mask 0x5
 
+   # Clear cooldown state
+   mkdir /mnt/vendor/persist/chargeonly 0770 system system
+   write /mnt/vendor/persist/chargeonly/cooldown n
+   chown system system /mnt/vendor/persist/chargeonly/cooldown
+   chmod 0660 /mnt/vendor/persist/chargeonly/cooldown
+
    # Change owner ship of l5 laser calibration
    chown camera vendor_tcmd /mnt/vendor/persist/camera/focus/offset_cal
    chmod 0660 /mnt/vendor/persist/camera/focus/offset_cal
@@ -337,12 +334,9 @@ on charger
     class_stop main
     class_stop late_start
 
-on property:sys.boot_completed=1
-    start vendor.batt_health
-
 on property:sys.boot_completed=1 && property:ro.vendor.zram.product_swapon=""
     write /proc/sys/vm/page-cluster 0
-    swapon_all /vendor/etc/fstab.default
+    swapon_all /vendor/etc/fstab.qcom
     write /proc/sys/vm/swappiness 100
     setprop sys.sysctl.swappiness 100
 
@@ -372,20 +366,13 @@ service vendor.oem-super-image-detector-sh /vendor/bin/init.oem.hw.sh -M
     oneshot
     disabled
 
-service vendor.ident-fps-sh /vendor/bin/init.oem.fingerprint.sh
-    class core
-    user root
-    group drmrpc system
-    oneshot
-    disabled
-
 service vendor.hal-fps-sh /vendor/bin/init.oem.fingerprint2.sh
     class late_start
     user root
     group system
     oneshot
 
-service fpc_ident /vendor/bin/hw/fpc_ident
+service fpc_ident /vendor/bin/fpc_ident
     class late_start
     user system
     group system
@@ -415,6 +402,9 @@ on property:vendor.hw.touch.status="dead"
 
 on property:vendor.hw.touch.status="ready"
     start vendor.touch-ready-sh
+
+on property:ro.boot.revision=*
+    setprop ro.boot.hardware.revision ${ro.boot.revision}
 
 service vendor.charge_only_mode /vendor/bin/charge_only_mode
     user root

@@ -1,0 +1,25 @@
+//
+// Copyright (C) 2023 ArrowOS
+//
+// SPDX-License-Identifier: Apache-2.0
+//
+
+android_app {
+    name: "CorfurCameraService",
+    srcs: [
+        "src/**/*.java",
+        "src/**/*.aidl",
+    ],
+    certificate: "platform",
+    platform_apis: true,
+    privileged: true,
+    system_ext_specific: true,
+    required: ["privapp-permissions-corfurcameraservice.xml"],
+}
+
+prebuilt_etc {
+    name: "privapp-permissions-corfurcameraservice.xml",
+    src: "privapp-permissions-corfurcameraservice.xml",
+    system_ext_specific: true,
+    sub_dir: "permissions",
+}

@@ -1,5 +1,7 @@
 # Audio
+persist.vendor.audio.bcl.enabled=false
 persist.vendor.audio.fluence.speaker=false
+persist.vendor.audio.vbat.enabled=false
 persist.vendor.audio.voicecall.speaker.stereo=true
 ro.vendor.qti.va_odm.support=1
 vendor.audio.use.sw.alac.decoder=false

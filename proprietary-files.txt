@@ -469,6 +469,7 @@ vendor/lib64/camera/com.qti.tuned.mot_corfup_ov16a1q_pnl.bin
 vendor/lib64/camera/com.qti.tuned.mot_corfup_s5k4h7ff.bin
 vendor/lib64/camera/com.qti.tuned.mot_corfup_s5kjn1.bin
 
+# Camera
 vendor/etc/pwr/PowerFeatureConfig.xml
 vendor/etc/pwr/VideoPowerOptFeature.xml
 vendor/lib/camera/fdconfigpreview.bin
@@ -583,6 +584,7 @@ vendor/lib64/libfcell.so
 vendor/lib64/libipebpsstriping.so
 vendor/lib64/libipebpsstriping170.so
 vendor/lib64/libjpege.so
+vendor/lib64/liblowlight_ai_portrait.arcsoft.so
 vendor/lib64/libmfec.so
 vendor/lib64/libmmcamera_bestats.so
 vendor/lib64/libmmcamera_cac3.so
@@ -684,6 +686,7 @@ vendor/etc/qdcm_calib_data_nt36672e_fhd_plus_120Hz_Video_panel.xml
 vendor/etc/qdcm_calib_data_nt36672e_fhd_plus_144Hz_video_panel.xml
 
 # Display (HDR)
+vendor/lib64/libhdr_stub.so
 vendor/lib64/libhdr_tm.so
 
 # FM
@@ -692,7 +695,7 @@ vendor/lib64/vendor.qti.hardware.fm@1.0.so
 
 # Fingerprint
 vendor/bin/hw/android.hardware.biometrics.fingerprint@2.1-service-fpc
-vendor/bin/hw/fpc_ident
+vendor/bin/hw/fpc_ident:vendor/bin/fpc_ident
 vendor/etc/init/android.hardware.biometrics.fingerprint@2.1-service-fpc2.rc
 vendor/lib64/com.fingerprints.extension@1.0.so
 vendor/lib64/vendor.qti.hardware.fingerprint@1.0.so

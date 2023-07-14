@@ -11,7 +11,6 @@
         <item>Natural</item>
         <item>Boosted</item>
         <item>Saturated</item>
-        <item>Adaptive</item>
     </string-array>
 
     <!-- Display settings screen, Color mode options. Must be the same length and order as
@@ -21,11 +20,7 @@
         <item>0</item>
         <item>1</item>
         <item>2</item>
-        <item>3</item>
     </integer-array>
-
-    <!-- Whether to show Smooth Display feature in Settings Options -->
-    <bool name="config_show_smooth_display">false</bool>
 
     <!-- Whether to show a preference item for regulatory information in About phone -->
     <bool name="config_show_regulatory_info">true</bool>

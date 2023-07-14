@@ -68,3 +68,17 @@ service capsense_reset /system/vendor/bin/capsense_reset
 
 on property:sys.boot_completed=1
     start capsense_reset
+
+on boot && property:ro.vendor.mot.gki.path=5.4-gki
+    insmod /vendor/lib/modules/${ro.vendor.mot.gki.path}/nfc_i2c.ko
+
+on late-init
+    insmod /vendor/lib/modules/${ro.vendor.mot.gki.path}/mmi-smbcharger-iio.ko
+    insmod /vendor/lib/modules/${ro.vendor.mot.gki.path}/qpnp_adaptive_charge.ko
+    insmod /vendor/lib/modules/${ro.vendor.mot.gki.path}/mmi_parallel_charger_iio.ko
+    insmod /vendor/lib/modules/fm_ctrl.ko
+
+on charger
+    insmod /vendor/lib/modules/${ro.vendor.mot.gki.path}/mmi-smbcharger-iio.ko
+    insmod /vendor/lib/modules/${ro.vendor.mot.gki.path}/qpnp_adaptive_charge.ko
+    insmod /vendor/lib/modules/${ro.vendor.mot.gki.path}/mmi_parallel_charger_iio.ko
