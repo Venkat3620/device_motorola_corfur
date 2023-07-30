@@ -180,18 +180,28 @@ PRODUCT_COPY_FILES += \
 
 # Init
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/rootdir/etc/fstab.qcom:$(TARGET_COPY_OUT_VENDOR_RAMDISK)/first_stage_ramdisk/fstab.qcom
+    $(LOCAL_PATH)/init/fstab.default:$(TARGET_COPY_OUT_VENDOR_RAMDISK)/first_stage_ramdisk/fstab.default
 
-PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/rootdir/etc/fstab.qcom:$(TARGET_COPY_OUT_VENDOR)/etc/fstab.qcom \
-    $(LOCAL_PATH)/rootdir/etc/ueventd.rc:$(TARGET_COPY_OUT_VENDOR)/ueventd.rc
-
-$(foreach f,$(wildcard $(LOCAL_PATH)/rootdir/etc/init/hw/*.rc),\
-        $(eval PRODUCT_COPY_FILES += $(f):$(TARGET_COPY_OUT_VENDOR)/etc/init/hw/$(notdir $f)))
-$(foreach f,$(wildcard $(LOCAL_PATH)/rootdir/etc/init/*.rc),\
-        $(eval PRODUCT_COPY_FILES += $(f):$(TARGET_COPY_OUT_VENDOR)/etc/init/$(notdir $f)))
-$(foreach f,$(wildcard $(LOCAL_PATH)/rootdir/bin/*.sh),\
-        $(eval PRODUCT_COPY_FILES += $(f):$(TARGET_COPY_OUT_VENDOR)/bin/$(notdir $f)))
+PRODUCT_PACKAGES += \
+    charger_fw_fstab.qti \
+    fstab.default \
+    init.corfur.perf.rc \
+    init.mmi.boot.sh \
+    init.mmi.charge_only.rc \
+    init.mmi.chipset.rc \
+    init.mmi.overlay.rc \
+    init.mmi.rc \
+    init.mmi.touch.sh \
+    init.oem.fingerprint.overlay.sh \
+    init.oem.fingerprint2.sh \
+    init.oem.hw.sh \
+    init.qcom.sensors.sh \
+    init.qti.chg_policy.sh \
+    init.qti.qcv.rc \
+    init.qti.qcv.sh \
+    init.target.rc \
+    init.vendor.st21nfc.rc \
+    ueventd.corfur.rc
 
 # IPACM
 PRODUCT_SOONG_NAMESPACES += vendor/qcom/opensource/data-ipa-cfg-mgr-legacy
@@ -280,6 +290,7 @@ TARGET_COMMON_QTI_COMPONENTS += \
     bt \
     display \
     gps \
+    init \
     media \
     overlay \
     perf \
