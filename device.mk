@@ -3,9 +3,6 @@ DEVICE_PATH := device/motorola/corfur
 HARDWARE_PATH := hardware/motorola
 QCOM_COMMON_PATH := device/qcom/common
 
-# Enable virtual A/B compression
-$(call inherit-product, $(SRC_TARGET_DIR)/product/virtual_ab_ota/compression.mk)
-
 # A/B related packages
 PRODUCT_PACKAGES += \
     update_engine \
@@ -257,6 +254,7 @@ PRODUCT_PACKAGES += \
     WifiResTargetCorfur
 
 # Partitions - Dynamic
+PRODUCT_BUILD_ODM_IMAGE := true
 PRODUCT_USE_DYNAMIC_PARTITIONS := true
 
 PRODUCT_PACKAGES += \

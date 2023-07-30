@@ -83,41 +83,47 @@ BOARD_BUILD_VENDOR_RAMDISK_IMAGE := true
 AB_OTA_PARTITIONS += \
     boot \
     dtbo \
+    odm \
     product \
     system \
     system_ext \
     vbmeta \
     vbmeta_system \
     vendor \
-    vendor_boot
+    vendor_boot \
+    vendor_dlkm
 
 AB_OTA_UPDATER := true
 
 # Partitions - Dynamic
 BOARD_SUPER_PARTITION_GROUPS := qti_dynamic_partitions
-BOARD_QTI_DYNAMIC_PARTITIONS_PARTITION_LIST := product system system_ext vendor
+BOARD_QTI_DYNAMIC_PARTITIONS_PARTITION_LIST := odm product system system_ext vendor vendor_dlkm
 
 # Partitions - Filesystems
+BOARD_ODMIMAGE_FILE_SYSTEM_TYPE := ext4
 BOARD_PRODUCTIMAGE_FILE_SYSTEM_TYPE := ext4
 BOARD_SYSTEM_EXTIMAGE_FILE_SYSTEM_TYPE := ext4
 BOARD_SYSTEMIMAGE_FILE_SYSTEM_TYPE := ext4
 BOARD_VENDORIMAGE_FILE_SYSTEM_TYPE := ext4
+BOARD_VENDOR_DLKMIMAGE_FILE_SYSTEM_TYPE := ext4
 BOARD_USERDATAIMAGE_FILE_SYSTEM_TYPE := f2fs
 
 # Partitions - Metadata
 BOARD_USES_METADATA_PARTITION := true
 
 # Partitions - Paths
+TARGET_COPY_OUT_ODM := odm
 TARGET_COPY_OUT_PRODUCT := product
 TARGET_COPY_OUT_SYSTEM_EXT := system_ext
 TARGET_COPY_OUT_VENDOR := vendor
+TARGET_COPY_OUT_VENDOR_DLKM := vendor_dlkm
 
 # Partitions - Sizes
 BOARD_BOOTIMAGE_PARTITION_SIZE := 100663296
 BOARD_DTBOIMG_PARTITION_SIZE := 25165824
 BOARD_FLASH_BLOCK_SIZE := 262144 # (BOARD_KERNEL_PAGESIZE * 64)
-BOARD_QTI_DYNAMIC_PARTITIONS_SIZE := 8921284608 # ( BOARD_SUPER_PARTITION_SIZE - 4MB )
-BOARD_SUPER_PARTITION_SIZE := 8925478912
+BOARD_QTI_DYNAMIC_PARTITIONS_SIZE := 7255617536 # ( BOARD_SUPER_PARTITION_SIZE/2 - 4MB )
+BOARD_SUPER_PARTITION_SIZE := 14512291840
 BOARD_VENDOR_BOOTIMAGE_PARTITION_SIZE := 100663296
 
 # Radio
@@ -131,11 +137,11 @@ TARGET_RECOVERY_FSTAB := $(DEVICE_PATH)/rootdir/etc/fstab.qcom
 TARGET_RECOVERY_WIPE := $(DEVICE_PATH)/recovery/recovery.wipe
 
 # SELinux
-BOARD_VENDOR_SEPOLICY_DIRS += \
-    $(DEVICE_PATH)/sepolicy/vendor
+#BOARD_VENDOR_SEPOLICY_DIRS += \
+#    $(DEVICE_PATH)/sepolicy/vendor
 
-PRODUCT_PRIVATE_SEPOLICY_DIRS += \
-    $(DEVICE_PATH)/sepolicy/private
+#PRODUCT_PRIVATE_SEPOLICY_DIRS += \
+#    $(DEVICE_PATH)/sepolicy/private
 
 # UFS
 #namespace definition for librecovery_updater
