@@ -68,8 +68,8 @@ KERNEL_DEFCONFIG := corfur-qgki_defconfig
 BOARD_DO_NOT_STRIP_VENDOR_MODULES := true
 BOARD_VENDOR_KERNEL_MODULES := \
 	$(KERNEL_MODULES_OUT)/qpnp_adaptive_charge.ko \
-	$(KERNEL_MODULES_OUT)/mmi-smbcharger-iio.ko \
 	$(KERNEL_MODULES_OUT)/mmi_sc8549.ko \
+	$(KERNEL_MODULES_OUT)/mmi-smbcharger-iio.ko \
 	$(KERNEL_MODULES_OUT)/mmi_parallel_charger_iio.ko
 
 # OTA Assert
