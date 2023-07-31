@@ -96,23 +96,34 @@ PRODUCT_PACKAGES += \
     android.hardware.audio@6.0-impl \
     android.hardware.audio.effect@6.0-impl \
     android.hardware.audio.service \
-    android.hardware.bluetooth.audio-impl \
     android.hardware.soundtrigger@2.3-impl \
     audioadsprpcd \
-    audio.bluetooth.default \
     audio.primary.holi \
     audio.r_submix.default \
     audio.usb.default \
     libaudiopreprocessing \
     libbundlewrapper \
+    liba2dpoffload \
+    libaudioroute \
+    libbatterylistener \
+    libcirrusspkrprot \
     libdownmix \
     libdynproc \
     libeffectproxy \
     libldnhncr \
+    libcomprcapture \
+    libexthwplugin \
+    libhdmiedid \
+    libhfp \
+    libqcompostprocbundle \
     libqcomvisualizer \
     libqcomvoiceprocessing \
     libreverbwrapper \
+    libsndmonitor \
+    libspkrprot \
     libvisualizer \
+    libtinycompress \
+    libvolumelistener \
     sound_trigger.primary.holi
 
 PRODUCT_COPY_FILES += \
@@ -127,7 +138,12 @@ PRODUCT_PACKAGES += \
 
 # Bluetooth
 PRODUCT_PACKAGES += \
-    android.hardware.bluetooth@1.0.vendor \
+    android.hardware.bluetooth@1.1.vendor \
+    android.hardware.bluetooth.audio@2.1-impl \
+    audio.bluetooth.default \
+    com.dsi.ant@1.0.vendor \
+    libldacBT_enc \
+    libldacBT_abr \
     vendor.qti.hardware.bluetooth_audio@2.1.vendor \
     vendor.qti.hardware.btconfigstore@1.0.vendor \
     vendor.qti.hardware.btconfigstore@2.0.vendor
@@ -148,33 +164,33 @@ $(call inherit-product, frameworks/native/build/phone-xhdpi-6144-dalvik-heap.mk)
 
 # Display
 PRODUCT_PACKAGES += \
+    android.hardware.graphics.common-V1-ndk_platform.vendor \
     android.hardware.graphics.mapper@3.0-impl-qti-display \
     android.hardware.graphics.mapper@4.0-impl-qti-display \
     android.hardware.memtrack@1.0-impl \
     android.hardware.memtrack@1.0-service \
-    init.qti.display_boot.rc \
     init.qti.display_boot.sh \
-    gralloc.default \
     libdisplayconfig.qti \
     libdisplayconfig.system.qti \
+    libmemutils \
     libqdMetaData \
-    libqdMetaData.system \
     libsdmcore \
     libsdmutils \
     libtinyxml \
-    libvulkan \
     memtrack.default \
-    vendor.display.config@1.15 \
     vendor.display.config@1.15.vendor \
     vendor.display.config@2.0 \
     vendor.display.config@2.0.vendor \
     vendor.qti.hardware.display.allocator-service \
     vendor.qti.hardware.display.composer-service \
-    vendor.qti.hardware.display.mapper@1.0.vendor \
     vendor.qti.hardware.display.mapper@1.1.vendor \
     vendor.qti.hardware.display.mapper@2.0.vendor \
     vendor.qti.hardware.display.mapper@3.0.vendor \
-    vendor.qti.hardware.display.mapper@4.0.vendor
+    vendor.qti.hardware.display.mapper@4.0.vendor \
+    vendor.qti.hardware.display.mapperextensions@1.0.vendor \
+    vendor.qti.hardware.display.mapperextensions@1.1.vendor \
+    vendor.qti.hardware.display.mapperextensions@1.2.vendor \
+    vendor.qti.hardware.display.mapperextensions@1.3.vendor
 
 # DRM
 PRODUCT_PACKAGES += \
