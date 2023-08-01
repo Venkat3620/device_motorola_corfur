@@ -96,9 +96,8 @@ PRODUCT_PACKAGES += \
     android.hardware.camera.provider@2.4-impl \
     android.hardware.camera.provider@2.4-service_64 \
     libcamera2ndk_vendor \
-    libgui_shim_vendor \
-    vendor.qti.hardware.camera.postproc@1.0.vendor \
-    CorfurCameraService
+    libgui_vendor \
+    vendor.qti.hardware.camera.postproc@1.0.vendor
 
 # Dalvik
 $(call inherit-product, frameworks/native/build/phone-xhdpi-6144-dalvik-heap.mk)
@@ -225,7 +224,9 @@ KERNEL_MODULES_OUT := $(OUT_DIR)/target/product/corfur/$(KERNEL_MODULES_INSTALL)
 
 # Manifests
 DEVICE_MANIFEST_FILE := $(DEVICE_PATH)/configs/vintf/manifest.xml
-
+DEVICE_FRAMEWORK_COMPATIBILITY_MATRIX_FILE += \
+    $(DEVICE_PATH)/configs/vintf/corfur_vendor_framework_compatibility_matrix.xml
+    
 # Moto Actions
 PRODUCT_PACKAGES += \
     MotoActions
