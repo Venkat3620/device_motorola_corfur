@@ -172,6 +172,7 @@ vendor/lib/libfcell.so
 vendor/lib/libipebpsstriping.so
 vendor/lib/libipebpsstriping170.so
 vendor/lib/libjpege.so
+vendor/lib/libmctfengine_stub.so
 vendor/lib/libmfec.so
 vendor/lib/libmmcamera_bestats.so
 vendor/lib/libmmcamera_cac3.so
@@ -251,6 +252,7 @@ vendor/lib64/libipebpsstriping.so
 vendor/lib64/libipebpsstriping170.so
 vendor/lib64/libjpege.so
 vendor/lib64/liblowlight_ai_portrait.arcsoft.so
+vendor/lib64/libmctfengine_stub.so
 vendor/lib64/libmfec.so
 vendor/lib64/libmmcamera_bestats.so
 vendor/lib64/libmmcamera_cac3.so
