@@ -199,7 +199,7 @@ PRODUCT_PACKAGES += \
     init.mmi.rc \
     init.oem.fingerprint2.sh \
     init.oem.hw.sh \
-    init.qcom.sh \
+    init.qcom.rc \
     init.qcom.recovery.rc \
     init.target.rc \
     ueventd.qcom.rc
@@ -217,7 +217,7 @@ PRODUCT_PACKAGES += \
 
 # LiveDisplay
 PRODUCT_PACKAGES += \
-    vendor.lineage.livedisplay@2.1-service-sdm
+    vendor.lineage.livedisplay@2.0-service-sdm
 
 # Media
 PRODUCT_COPY_FILES += \
