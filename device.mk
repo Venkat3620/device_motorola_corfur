@@ -200,7 +200,7 @@ PRODUCT_PACKAGES += \
     init.oem.fingerprint2.sh \
     init.oem.hw.sh \
     init.qcom.sh \
-    init.recovery.qcom.rc \
+    init.qcom.recovery.rc \
     init.target.rc \
     ueventd.rc
 
