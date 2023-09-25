@@ -83,7 +83,17 @@ PRODUCT_PACKAGES += \
 # Init
 PRODUCT_PACKAGES += \
     fstab.default \
-    fstab.default.vendor_ramdisk
+    fstab.default.vendor_ramdisk \
+    init.class_main.sh \
+    init.mmi.charge_only.rc \
+    init.mmi.overlay.rc \
+    init.mmi.rc \
+    init.oem.fingerprint2.sh \
+    init.oem.hw.sh \
+    init.qcom.sh \
+    init.recovery.qcom.rc \
+    init.target.rc \
+    ueventd.rc
 
 # Moto hardware
 PRODUCT_PACKAGES += \
