@@ -126,6 +126,12 @@ TARGET_KERNEL_ADDITIONAL_FLAGS := DTC_EXT=$(shell pwd)/prebuilts/misc/linux-x86/
 TARGET_KERNEL_SOURCE := kernel/motorola/sm6375
 TARGET_KERNEL_CONFIG := vendor/holi-qgki_defconfig
 
+# Kernel Modules
+BOARD_VENDOR_KERNEL_MODULES_LOAD := $(strip $(shell cat $(DEVICE_PATH)/modules.load))
+BOARD_VENDOR_KERNEL_MODULES_BLOCKLIST_FILE := $(DEVICE_PATH)/modules.blocklist
+BOARD_VENDOR_RAMDISK_RECOVERY_KERNEL_MODULES_LOAD := $(strip $(shell cat $(DEVICE_PATH)/modules.load.recovery))
+BOOT_KERNEL_MODULES := $(BOARD_VENDOR_RAMDISK_RECOVERY_KERNEL_MODULES_LOAD)
+
 # Partitions - A/B
 AB_OTA_PARTITIONS := boot dtbo product system system_ext vbmeta vbmeta_system vendor_boot
 AB_OTA_UPDATER := true
