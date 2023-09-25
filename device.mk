@@ -202,7 +202,7 @@ PRODUCT_PACKAGES += \
     init.qcom.sh \
     init.qcom.recovery.rc \
     init.target.rc \
-    ueventd.rc
+    ueventd.qcom.rc
 
 # IPACM
 PRODUCT_PACKAGES += \
