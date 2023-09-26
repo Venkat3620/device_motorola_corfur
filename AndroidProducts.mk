@@ -5,9 +5,9 @@
 #
 
 PRODUCT_MAKEFILES := \
-    $(LOCAL_DIR)/lineage_xpeng.mk
+    $(LOCAL_DIR)/lineage_corfur.mk
 
 COMMON_LUNCH_CHOICES := \
-    lineage_xpeng-user \
-    lineage_xpeng-userdebug \
-    lineage_xpeng-eng
+    lineage_corfur-user \
+    lineage_corfur-userdebug \
+    lineage_corfur-eng

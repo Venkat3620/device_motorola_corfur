@@ -1,7 +1,6 @@
-msm_drm.ko
+focaltech_v2_mmi.ko
+mmi_annotate.ko
+mmi_info.ko
 mmi_relay.ko
 sensors_class.ko
 touchscreen_mmi.ko
-mmi_annotate.ko
-mmi_info.ko
-nova_0flash_mmi.ko
