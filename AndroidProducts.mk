@@ -5,9 +5,9 @@
 #
 
 PRODUCT_MAKEFILES := \
-    $(LOCAL_DIR)/lineage_corfur.mk
+    $(LOCAL_DIR)/aosp_corfur.mk
 
 COMMON_LUNCH_CHOICES := \
-    lineage_corfur-user \
-    lineage_corfur-userdebug \
-    lineage_corfur-eng
+    aosp_corfur-user \
+    aosp_corfur-userdebug \
+    aosp_corfur-eng
