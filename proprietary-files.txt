@@ -573,7 +573,11 @@ vendor/lib64/hw/vendor.qti.hardware.eid@1.0-impl.so
 vendor/lib64/vendor.qti.hardware.eid@1.0.so
 
 # Fingerprint (goodix)
+vendor/bin/hw/android.hardware.biometrics.fingerprint@2.1-goodixservice
 vendor/bin/hw/goodix_ident:vendor/bin/goodix_ident
+vendor/etc/init/android.hardware.biometrics.fingerprint@2.1-goodixservice.rc
+vendor/firmware/goodix_cfg_group.bin
+vendor/firmware/goodix_firmware.bin
 vendor/lib64/hw/fingerprint.goodix.default.so
 vendor/lib64/libgf_ca.so
 vendor/lib64/libgf_hal.so
